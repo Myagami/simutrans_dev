@@ -5,11 +5,10 @@ class Index_Controller extends Base_Controller{
 
 	public function Index(){
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
-		$this->Display("index") ;
 	}
 
-	protected function Display($dis_page){
-		$this->Load_Method("Smarty_Wrapper","display",$dis_page.".tpl") ;
+	public function Display($dis_page){
+		$this->Load_Method("Smarty_Wrapper","display","Index/".$dis_page.".tpl") ;
 	}
 
 }
