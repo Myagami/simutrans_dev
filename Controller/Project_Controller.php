@@ -9,7 +9,6 @@ class Project_Controller extends Base_Controller{
 
 	public function Pr_List(){//プロジェクトリスト
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
-		$this->Display("index") ;
 	}
 
 	public function Pr_Import(){//インポートでのプロジェクト構成
