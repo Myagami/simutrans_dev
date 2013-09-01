@@ -1,7 +1,6 @@
 <?php
 class Reinforce_Zwei extends Reinforce{
 	protected $module_path ="./lib" ;
-
 	public function import_module($mod){//モジュール呼出
 		try{
 			if(!preg_match("/^[A-Z]{1,}[a-zA-Z0-9_]{1,}$/",$mod)){//命名規則の確認
@@ -49,7 +48,29 @@ class Reinforce_Zwei extends Reinforce{
 		}catch(Exception $e){
 			echo $e->getMessage() ;
 		}
-}
+	}
+
+	public function Load_Model($model){
+		try{
+			$model_path = "./Model/Model_{$model}.php" ;
+
+			if(!file_exists($model_path)){//モデルの有無確認
+				throw new Exception("<b>Model \"{$model}\" Not found</b><br>") ;
+			}
+			//モデルデータ呼び出し
+			require_once($model_path) ;
+			//モデル名構成
+			$model = "Model_".$model ;
+			//インスタンス返却
+			return new $model() ;
+		}catch(Exception $e){
+			echo $e->getMessage() ;
+		}
+	}
+
+	public function Load_Method_Chein($mod,$method,$param=array()){//モジュールメソッドのチェーン構成
+		
+	}
 }
 
 ?>
