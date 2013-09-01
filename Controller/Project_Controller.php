@@ -9,29 +9,24 @@ class Project_Controller extends Base_Controller{
 	public function Pr_New_Add(){//新規プロジェクト
 		$this->import_module("URL_Query") ;
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - New Project ")) ;
+
+		//フォームデータ取得
 		$Prj_Prop = $this->Load_Method("URL_Query","get_param",array("Prj")) ;
 		$this->Load_Method("Smarty_Wrapper","assign_array",array("Prj",$Prj_Prop)) ;
 
-		//ファイル読出
+		//DBモデルへ処理引渡し
 		$PRJ_Model = $this->Load_Model("Project_DB") ;
 		$PRJ_Model->add_Project($Prj_Prop) ;
-		/*$this->import_module_Zwei("File_Wrapper") ;
-		$DBC = $this->Load_Method("File_Wrapper","Load_File","Config/Database_Setting.ini") ;
-		//DB用データ構築
-		$PRJ_Data["P_ID"] = date("_ymd_his_").$Prj_Prop["type"] ;
-		$PRJ_Data["P_Name"] = $Prj_Prop["name"] ;
-		$PRJ_Data["Comments"] = $Prj_Prop["disp"] ;
-
-		//DB接続
-		$this->Load_Method_Zwei("Database_Connect","DB_Setting",$DBC["mysql"]) ;
-		$this->Load_Method("Database_Connect","set_table","Project_List") ;
-		$this->Load_Method_Zwei("Database_Connect","insert",$PRJ_Data) ;*/
 		$this->display("Pr_New_Add") ;
 
 	}
 
 	public function Pr_List(){//プロジェクトリスト
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
+		$PRJ_Model = $this->Load_Model("Project_DB") ;
+		$PRJ_List = $PRJ_Model->list_Project(array("0","30")) ;
+		$this->Load_Method("Smarty_Wrapper","assign",array("Prj_Lists",$PRJ_List)) ;
+		//print_r($PRJ_List) ;
 		$this->display("Pr_List") ;
 
 	}
