@@ -15,16 +15,16 @@ class Project_Controller extends Base_Controller{
 		$this->Load_Method("Smarty_Wrapper","assign_array",array("Prj",$Prj_Prop)) ;
 
 		//DBモデルへ処理引渡し
-		$PRJ_Model = $this->Load_Model("Project_DB") ;
-		$PRJ_Model->add_Project($Prj_Prop) ;
+		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
+		$PRJ_DB_Model->add_Project($Prj_Prop) ;
 		$this->display("Pr_New_Add") ;
 
 	}
 
 	public function Pr_List(){//プロジェクトリスト
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - Project List")) ;
-		$PRJ_Model = $this->Load_Model("Project_DB") ;
-		$PRJ_List = $PRJ_Model->list_Project(array("0","30")) ;
+		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
+		$PRJ_List = $PRJ_DB_Model->list_Project(array("0","30")) ;
 		$this->Load_Method("Smarty_Wrapper","assign",array("Prj_Lists",$PRJ_List)) ;
 		//print_r($PRJ_List) ;
 		$this->display("Pr_List") ;
@@ -38,6 +38,9 @@ class Project_Controller extends Base_Controller{
 
 	public function Pr_Portal(){
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
+		$PRJ_Form_Model = $this->Load_Model("Project_Form") ;		
+		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
+		echo $PRJ_Form_Model->Portal_Page_ID() ;
 		$this->display("Pr_Portal") ;
 	}
 
