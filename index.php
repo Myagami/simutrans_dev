@@ -1,5 +1,7 @@
 <?php
 header( 'Pragma: no-cache' );
+header( 'Content-type:text/html;charset=UTF-8' );
+
 try{
 //require Core Reinforce Zwei
 	require_once("Reinforce.php") ;
