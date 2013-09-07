@@ -50,6 +50,7 @@ class Reinforce_Zwei extends Reinforce{
 		}
 	}
 
+/* include Model and View*/
 	public function Load_Model($model){
 		try{
 			$model_path = "./Model/Model_{$model}.php" ;
@@ -67,9 +68,22 @@ class Reinforce_Zwei extends Reinforce{
 			echo $e->getMessage() ;
 		}
 	}
-
-	public function Load_Method_Chein($mod,$method,$param=array()){//モジュールメソッドのチェーン構成
-		
+	
+	public function Load_View($View){
+		try{
+			$View_Path = "./View/View_{$View}.php" ;
+			if(!file_exists($View_Path)){//モデルの有無確認
+				throw new Exception("<b>View \"{$View}\" Not found</b><br>") ;
+			}
+			//モデルデータ呼び出し
+			require_once($View_Path) ;
+			//モデル名構成
+			$View = "View_".$View ;
+			//インスタンス返却
+			return new $View() ;
+		}catch(Exception $e){
+			echo $e->getMessage() ;
+		}
 	}
 }
 
