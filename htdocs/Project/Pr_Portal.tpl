@@ -15,12 +15,12 @@
 <div class="row-fluid">
     <ul class="nav nav-tabs nav-stacked span2">
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">Import File</a></li>
-<li><a href="javascript:vold(0)" onclick="click_call();return false;">b</a></li>
+<li><a href="javascript:vold(0)" onclick="click_call();return false;">Trans</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">c</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">d</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">e</a></li>
     </ul>
-<div class="span10 well">
+<iframe src="{$load_path.base_url}/Pr_Portal/Index?ID={$P_ID}" class="span10 works">
 Frame Works
 </div>
 </div>
