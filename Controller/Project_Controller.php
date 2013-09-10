@@ -2,8 +2,8 @@
 class Project_Controller extends Base_Controller{
 	/* 新規プロジェクト */
 	public function Pr_New(){//新規プロジェクト
-		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - New Project ")) ;
-		$this->display("Pr_New") ;
+		//$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - New Project ")) ;
+		$this->View->display("Pr_New") ;
 	}
 
 	public function Pr_New_Add(){//新規プロジェクト
@@ -17,19 +17,20 @@ class Project_Controller extends Base_Controller{
 		//DBモデルへ処理引渡し
 		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
 		$PRJ_DB_Model->add_Project($Prj_Prop) ;
-		$this->display("Pr_New_Add") ;
+
+		$this->View->display("Pr_New_Add") ;
 
 	}
 
 /* プロジェクトのインポート*/
 	public function Pr_Import(){//インポートでのプロジェクト構成
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
-		$this->display("Pr_Import") ;
+		$this->View->display("Pr_Import") ;
 	}
 
 	public function Pr_New_Import(){//インポートでのプロジェクト構成
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools")) ;
-		$this->display("Pr_Import") ;
+		$this->View->display("Pr_Import") ;
 	}
 
 	/* ポータル */
@@ -38,9 +39,9 @@ class Project_Controller extends Base_Controller{
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - Project List")) ;
 		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
 		$PRJ_List = $PRJ_DB_Model->List_Project(array("0","30")) ;
-		$this->Load_Method("Smarty_Wrapper","assign",array("Prj_Lists",$PRJ_List)) ;
+		$this->View->assigns("Prj_Lists",$PRJ_List) ;
 		//print_r($PRJ_List) ;
-		$this->display("Pr_List") ;
+		$this->View->display("Pr_List") ;
 
 	}
 
@@ -51,8 +52,8 @@ class Project_Controller extends Base_Controller{
 		$P_Props = $PRJ_DB_Model->Prop_Project($P_ID) ;
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - ".$P_Props["p_name"])) ;
 		//print_r($P_Props) ;
-		$this->Load_Method("Smarty_Wrapper","assign",array("P_Prop",$P_Props)) ;
-		$this->display("Pr_Portal") ;
+		$this->View->assigns("P_Prop",$P_Props) ;
+		$this->View->display("Pr_Portal") ;
 	}
 
 

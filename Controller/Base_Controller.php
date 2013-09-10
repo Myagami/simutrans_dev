@@ -1,11 +1,13 @@
 <?php
 
 abstract class Base_Controller extends Reinforce_Zwei{
-	//abstract public function Index();//起点コントローラー
-	abstract public function Display($dis_page);//出力コントローラー
+	//View Mods
+	protected $View ;
 
+	//初回起動
 	public function __construct($Controller){
-		$this->import_module_Zwei("Smarty_Wrapper") ;
+		$this->View = $this->Load_View($Controller) ;
+		/*$this->import_module_Zwei("Smarty_Wrapper") ;
 		$param = array(
 			"template" => "./htdocs/",
 			"template_c" => "./Cache/",
@@ -19,7 +21,7 @@ abstract class Base_Controller extends Reinforce_Zwei{
 									"htdocs_lib" => "./htdocs/lib",
 									"base_url" => "http://".$_SERVER["HTTP_HOST"]."/~hayate/simutrans_dev/" 
 									)
-			) ;
+									) ;*/
 	}
 
 }
