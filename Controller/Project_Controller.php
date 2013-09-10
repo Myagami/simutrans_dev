@@ -53,6 +53,7 @@ class Project_Controller extends Base_Controller{
 		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - ".$P_Props["p_name"])) ;
 		//print_r($P_Props) ;
 		$this->View->assigns("P_Prop",$P_Props) ;
+		$this->View->assigns("P_ID",$P_ID) ;
 		$this->View->display("Pr_Portal") ;
 	}
 
