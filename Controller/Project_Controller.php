@@ -36,7 +36,6 @@ class Project_Controller extends Base_Controller{
 	/* ポータル */
 
 	public function Pr_List(){//プロジェクトリスト
-		$this->Load_Method("Smarty_Wrapper","assign",array("this_page","Simutrans Develop Tools - Project List")) ;
 		$PRJ_DB_Model = $this->Load_Model("Project_DB") ;
 		$PRJ_List = $PRJ_DB_Model->List_Project(array("0","30")) ;
 		$this->View->assigns("Prj_Lists",$PRJ_List) ;

@@ -6,6 +6,10 @@ class Pr_Portal_Controller extends Base_Controller{
 		$this->View->display("Pr_Portal_Index") ;
 	}
 	
+	public function Import(){
+		$this->View->display("Pr_Portal_Import") ;
+	}
+	
 }
 
 ?>
