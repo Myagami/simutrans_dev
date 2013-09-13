@@ -1,7 +1,7 @@
 <html>
   <head>
 {include file="../Common/header.tpl"}
-
+<script type="text/javascript" src="{$load_path.htdocs_lib}/js/Pr_Portal.js"></script>
   </head>
   <body>
     <!-- Navi -->
@@ -14,13 +14,13 @@
       </div>
 <div class="row-fluid">
     <ul class="nav nav-tabs nav-stacked span2">
-<li><a href="javascript:vold(0)" onclick="click_call();return false;">Import File</a></li>
+<li><a href="javascript:vold(0)" onclick="load_tools('Import');return false;">Import File</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">Trans</a></li>
-<li><a href="javascript:vold(0)" onclick="click_call();return false;">c</a></li>
+<li><a href="javascript:vold(0)" onclick="load_tools('scan');return false;">Scan</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">d</a></li>
 <li><a href="javascript:vold(0)" onclick="click_call();return false;">e</a></li>
     </ul>
-<iframe src="{$load_path.base_url}/Pr_Portal/Index?ID={$P_ID}" class="span10 works">
+<iframe id="works" src="{$load_path.base_url}/Pr_Portal/Index" class="span10 works well">
 Frame Works
 </div>
 </div>

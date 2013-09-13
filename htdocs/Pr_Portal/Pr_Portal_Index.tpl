@@ -4,12 +4,7 @@
 
   </head>
   <body>
-    <form action="#" method="post">
-        <fieldset>
-            <legend>File Imports</legend>
-            <input type="file"/><br>
-            <input type="submit" value="ファイル登録"/>
-        </fieldset>
-    </form>
+<h1>Project Portal Tools</h1>
+<p>作業ツールは左のメニューから</p>
 </body>
 </html>
