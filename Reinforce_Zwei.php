@@ -1,14 +1,28 @@
 <?php
 class Reinforce_Zwei extends Reinforce{
 	protected $module_path ="./lib" ;
-	public function import_module($mod){//モジュール呼出
+	/* module imports */
+
+	public function import_modules($mod,$type="Eins",$param=array()){//モジュールのインポート一元化
+		try{
+			//ロード先判定
+			if($type == "Eins"){//Reinforce_Core
+				$this->import_module_Eins_($mod) ;
+			}elseif($type == "Zwei"){//Zwei Libs
+				$this->import_module_Zwei_($mod) ;				
+			}
+		}catch(Exception $e){
+			echo $e->getMessage() ;
+		}
+	}
+
+	protected function import_module_Eins_($mod){//Reinforce Core Module
 		try{
 			if(!preg_match("/^[A-Z]{1,}[a-zA-Z0-9_]{1,}$/",$mod)){//命名規則の確認
 				throw new Exception("<h2>Module:<u><i>{$mod}</i></u> Not Naming Found</h2>") ;
 			}
 			
-			$path = $this->module_path."/".$mod.".php" ;
-			
+			$path = "./Reinforce_Core/".$mod."/".$mod.".php" ;
 			if(!file_exists($path)){//モジュールの有無
 				throw new Exception("<h2>Module:<u><i>{$mod}</i></u> Not Found</h2>") ;
 			}
@@ -18,11 +32,11 @@ class Reinforce_Zwei extends Reinforce{
 			echo $e->getMessage() ;
 		}
 	}
-	
-	public function import_module_Zwei($mod,$param=array()){//Reinforce向けモジュール読込
+
+	protected function import_module_Zwei_($mod){//Zwei main module
 		try{
 			if(preg_match("/(^[A-Za-z0-9_]{1,}$)/",$mod,$mods)){
-				$path = "Reinforce_Core/".$mod."/".$mod.".php" ;
+				$path = $this->module_path."/".$mod.".php" ;
 				if(!file_exists($path)){
 					throw new Exception("<b>Path Error - {$path} </b><br>") ;
 
@@ -40,6 +54,18 @@ class Reinforce_Zwei extends Reinforce{
 		}catch(Exception $e){
 			echo $e->getMessage() ;
 		}
+	}
+
+/*
+  old import methods
+  rewrite import_modules($mod,"Eins(old module) / Zwei(Zwei add modules) ;
+*/
+	public function import_module($mod){//モジュール呼出
+		$this->import_module_Zwei_($mod) ;
+	}
+	
+	public function import_module_Zwei($mod,$param=array()){//Reinforce向けモジュール読込
+		$this->import_module_Eins_($mod) ;
 	}
 
 	public function Load_Method_Zwei($mod,$method=null,$param=array()){//モジュールのメソッド実行
