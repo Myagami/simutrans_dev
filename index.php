@@ -23,7 +23,7 @@ try{
 		$Dis_Method = $_GET["Method"] ;
 	}
 	
-	$Reinforce_Zwei->import_module("Dispatcher") ;
+	$Reinforce_Zwei->import_modules("Dispatcher","Zwei") ;
 	$Reinforce_Zwei->load_method("Dispatcher","dispatch",array($Dis_Controll,$Dis_Method)) ;
 
 
